@@ -8,6 +8,7 @@ GoRouter goRouters = GoRouter(
   routes: [
     GoRoute(path: '/splash', builder: (context, state) => const SplashScreen()),
     GoRoute(path: AppRoutes.root, builder: (_, __) => const SplashScreen()),
+    GoRoute(path: AppRoutes.home, builder: (_, __) => const ProductsPage()),
 
     ],
 );

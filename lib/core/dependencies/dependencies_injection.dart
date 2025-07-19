@@ -24,4 +24,6 @@ void initGetIt() async {
 
 
   initAuthDI();
+  initCartDI();
+  initProductsDI();
 }

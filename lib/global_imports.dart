@@ -23,4 +23,6 @@ export 'core/core.dart';
 ////////////// Features
 
 export 'feature/auth/auth_barrel.dart';
+export 'feature/cart/cart_barrel.dart';
+export 'feature/products/products_barrel.dart';
 export 'main.dart';
