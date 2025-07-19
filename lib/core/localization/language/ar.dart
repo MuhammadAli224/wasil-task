@@ -148,5 +148,7 @@ const Map<String, String> arLan = {
   "barcode": "الباركود",
   "qRCode": "رمز الاستجابة السريعة (QR)",
   "tags": "الوسوم",
-  "reviews": "التقييمات"
+  "reviews": "التقييمات",
+  "removeFromCartSuccess": "تمت إزالة المنتج من السلة بنجاح",
+  "addToCartSuccess": "تمت إضافة المنتج إلى السلة بنجاح"
 };

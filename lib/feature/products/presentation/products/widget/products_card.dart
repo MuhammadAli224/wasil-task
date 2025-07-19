@@ -2,6 +2,7 @@ import 'package:cached_network_image_plus/flutter_cached_network_image_plus.dart
 
 import '../../../../../core/utils/border_radius.dart';
 import '../../../../../global_imports.dart';
+import 'product_card_cart_widget.dart';
 
 class ProductsCard extends StatelessWidget {
   final ProductsEntity product;
@@ -81,13 +82,9 @@ class ProductsCard extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Icon(
-                            Icons.add_shopping_cart,
-                            color: AppColor.primaryColor,
-                            size: 25,
-                          ),
+                          ProductCardCartWidget(product: product),
                           AutoSizeText(
-                            product.category,
+                            product.category.toUpperCase(),
                             maxLines: 1,
                             minFontSize: 8,
                           ),

@@ -7,10 +7,7 @@ class ProductsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ProductsCubit, ProductsState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+    return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
         return state.when(
           initial: () => const SizedBox.shrink(),

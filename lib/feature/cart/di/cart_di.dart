@@ -1,23 +1,24 @@
 import '../../../../global_imports.dart';
 
 void initCartDI() {
-  getIt.registerLazySingleton<CartRemoteDataSource>(
-    () => CartRemoteDataSourceImpl(getIt(), getIt()),
-  );
-
   getIt.registerLazySingleton<CartLocalDataSource>(
     () => CartLocalDataSourceImpl(getIt()),
   );
 
   getIt.registerLazySingleton<CartRepository>(
-    () => CartRepositoryImpl(
-      remote: getIt(),
-      local: getIt(),
-      networkInfo: getIt(),
-    ),
+    () => CartRepositoryImpl(local: getIt()),
   );
 
-  getIt.registerLazySingleton<CartUseCase>(() => CartUseCase(getIt()));
+  getIt.registerLazySingleton<GetCartUseCase>(() => GetCartUseCase(getIt()));
+  getIt.registerLazySingleton<AddToCartUseCase>(
+    () => AddToCartUseCase(getIt()),
+  );
+  getIt.registerLazySingleton<ChangeCartQuantityUseCase>(
+    () => ChangeCartQuantityUseCase(getIt()),
+  );
+  getIt.registerLazySingleton<RemoveFromCartUseCase>(
+    () => RemoveFromCartUseCase(getIt()),
+  );
 
-  getIt.registerFactory(() => CartCubit(getIt()));
+  getIt.registerFactory(() => CartCubit(getIt(), getIt(), getIt(), getIt()));
 }

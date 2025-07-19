@@ -184,6 +184,8 @@ abstract class AppStrings {
   static const String qRCode = "qRCode";
   static const String tags = "tags";
   static const String reviews = "reviews";
+  static const String removeFromCartSuccess = "removeFromCartSuccess";
+  static const String addToCartSuccess = "addToCartSuccess";
 
   /////////////////////////////
 }

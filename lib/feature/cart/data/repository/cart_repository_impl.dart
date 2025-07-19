@@ -1,39 +1,90 @@
 import '../../../../global_imports.dart';
 
 class CartRepositoryImpl implements CartRepository {
-final CartRemoteDataSource _remote;
-final CartLocalDataSource _local;
-final NetworkInfo _networkInfo;
+  final CartLocalDataSource _local;
 
+  CartRepositoryImpl({required CartLocalDataSource local}) : _local = local;
 
-CartRepositoryImpl({required NetworkInfo networkInfo,
-required CartRemoteDataSource remote,
-required CartLocalDataSource local,
+  @override
+  Future<Either<Failure, ApiResponse<CartEntity>>> fetchAll({
+    CancelToken? cancelToken,
+  }) async {
+    try {
+      final result = await _local.getCarts();
 
-})
-    : _remote = remote,
-_local = local,
-_networkInfo = networkInfo;
+      return right(
+        ApiResponse(
+          message: AppStrings.success,
+          list: result.toEntity(),
+          code: 200,
+        ),
+      );
+    } catch (e, t) {
+      return handleRepoDataError(e, t);
+    }
+  }
 
+  @override
+  Future<Either<Failure, ApiResponse<CartEntity>>> addItem({
+    CancelToken? cancelToken,
+    required CartEntity product,
+  }) async {
+    try {
+      final result = await _local.addToCarts(cartItem: product.toModel());
 
+      return right(
+        ApiResponse(
+          message: AppStrings.addToCartSuccess.tr(),
+          list: result.toEntity(),
+          code: 200,
+        ),
+      );
+    } catch (e, t) {
+      return handleRepoDataError(e, t);
+    }
+  }
 
-@override
-Future<Either<Failure, ApiResponse<CartEntity>>> fetchAll({CancelToken? cancelToken}) async {
-try {
-final apiResponse = await _remote.getCart();
+  @override
+  Future<Either<Failure, ApiResponse<CartEntity>>> changeQuantity({
+    CancelToken? cancelToken,
+    required int productId,
+    required int quantity,
+  }) async {
+    try {
+      final result = await _local.updateQuantity(
+        id: productId,
+        value: quantity,
+      );
 
+      return right(
+        ApiResponse(
+          message: AppStrings.success,
+          list: result.toEntity(),
+          code: 200,
+        ),
+      );
+    } catch (e, t) {
+      return handleRepoDataError(e, t);
+    }
+  }
 
-if (apiResponse.success && apiResponse.data != null) {
-final entityResponse = apiResponse.map((model) => model.toEntity());
-return right(entityResponse);
-// await local.cacheToken(apiResponse.data!.token!);
+  @override
+  Future<Either<Failure, ApiResponse<CartEntity>>> removeItem({
+    CancelToken? cancelToken,
+    required int productId,
+  }) async {
+    try {
+      final result = await _local.removeFromCarts(id: productId);
 
-} else {
-return left(ServerFailure(message: apiResponse.message));
-}
-} catch (e,t) {
-return handleRepoDataError(e,t);
-}
-}
-
+      return right(
+        ApiResponse(
+          message: AppStrings.removeFromCartSuccess.tr(),
+          list: result.toEntity(),
+          code: 200,
+        ),
+      );
+    } catch (e, t) {
+      return handleRepoDataError(e, t);
+    }
+  }
 }

@@ -20,12 +20,14 @@ CartDTO _$CartDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CartDTO {
-  @JsonKey(name: "name")
-  String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "image")
-  String get image => throw _privateConstructorUsedError;
-  @JsonKey(name: "descreption")
-  String? get description => throw _privateConstructorUsedError;
+  @HiveField(1)
+  num get price => throw _privateConstructorUsedError;
+  @HiveField(2)
+  int get quantity => throw _privateConstructorUsedError;
+  @HiveField(3)
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  @HiveField(4)
+  ProductsDTO get product => throw _privateConstructorUsedError;
 
   /// Serializes this CartDTO to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,9 +44,12 @@ abstract class $CartDTOCopyWith<$Res> {
       _$CartDTOCopyWithImpl<$Res, CartDTO>;
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String name,
-      @JsonKey(name: "image") String image,
-      @JsonKey(name: "descreption") String? description});
+      {@HiveField(1) num price,
+      @HiveField(2) int quantity,
+      @HiveField(3) DateTime createdAt,
+      @HiveField(4) ProductsDTO product});
+
+  $ProductsDTOCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -62,24 +67,39 @@ class _$CartDTOCopyWithImpl<$Res, $Val extends CartDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? image = null,
-    Object? description = freezed,
+    Object? price = null,
+    Object? quantity = null,
+    Object? createdAt = null,
+    Object? product = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as num,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductsDTO,
     ) as $Val);
+  }
+
+  /// Create a copy of CartDTO
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductsDTOCopyWith<$Res> get product {
+    return $ProductsDTOCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
   }
 }
 
@@ -91,9 +111,13 @@ abstract class _$$CartDTOImplCopyWith<$Res> implements $CartDTOCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "name") String name,
-      @JsonKey(name: "image") String image,
-      @JsonKey(name: "descreption") String? description});
+      {@HiveField(1) num price,
+      @HiveField(2) int quantity,
+      @HiveField(3) DateTime createdAt,
+      @HiveField(4) ProductsDTO product});
+
+  @override
+  $ProductsDTOCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -109,51 +133,61 @@ class __$$CartDTOImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? image = null,
-    Object? description = freezed,
+    Object? price = null,
+    Object? quantity = null,
+    Object? createdAt = null,
+    Object? product = null,
   }) {
     return _then(_$CartDTOImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as num,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductsDTO,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: 105, adapterName: 'CartDTOAdapter')
 class _$CartDTOImpl implements _CartDTO {
   const _$CartDTOImpl(
-      {@JsonKey(name: "name") required this.name,
-      @JsonKey(name: "image") required this.image,
-      @JsonKey(name: "descreption") this.description});
+      {@HiveField(1) required this.price,
+      @HiveField(2) required this.quantity,
+      @HiveField(3) required this.createdAt,
+      @HiveField(4) required this.product});
 
   factory _$CartDTOImpl.fromJson(Map<String, dynamic> json) =>
       _$$CartDTOImplFromJson(json);
 
   @override
-  @JsonKey(name: "name")
-  final String name;
+  @HiveField(1)
+  final num price;
   @override
-  @JsonKey(name: "image")
-  final String image;
+  @HiveField(2)
+  final int quantity;
   @override
-  @JsonKey(name: "descreption")
-  final String? description;
+  @HiveField(3)
+  final DateTime createdAt;
+  @override
+  @HiveField(4)
+  final ProductsDTO product;
 
   @override
   String toString() {
-    return 'CartDTO(name: $name, image: $image, description: $description)';
+    return 'CartDTO(price: $price, quantity: $quantity, createdAt: $createdAt, product: $product)';
   }
 
   @override
@@ -161,15 +195,18 @@ class _$CartDTOImpl implements _CartDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartDTOImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.description, description) ||
-                other.description == description));
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.product, product) || other.product == product));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, image, description);
+  int get hashCode =>
+      Object.hash(runtimeType, price, quantity, createdAt, product);
 
   /// Create a copy of CartDTO
   /// with the given fields replaced by the non-null parameter values.
@@ -189,21 +226,25 @@ class _$CartDTOImpl implements _CartDTO {
 
 abstract class _CartDTO implements CartDTO {
   const factory _CartDTO(
-      {@JsonKey(name: "name") required final String name,
-      @JsonKey(name: "image") required final String image,
-      @JsonKey(name: "descreption") final String? description}) = _$CartDTOImpl;
+      {@HiveField(1) required final num price,
+      @HiveField(2) required final int quantity,
+      @HiveField(3) required final DateTime createdAt,
+      @HiveField(4) required final ProductsDTO product}) = _$CartDTOImpl;
 
   factory _CartDTO.fromJson(Map<String, dynamic> json) = _$CartDTOImpl.fromJson;
 
   @override
-  @JsonKey(name: "name")
-  String get name;
+  @HiveField(1)
+  num get price;
   @override
-  @JsonKey(name: "image")
-  String get image;
+  @HiveField(2)
+  int get quantity;
   @override
-  @JsonKey(name: "descreption")
-  String? get description;
+  @HiveField(3)
+  DateTime get createdAt;
+  @override
+  @HiveField(4)
+  ProductsDTO get product;
 
   /// Create a copy of CartDTO
   /// with the given fields replaced by the non-null parameter values.

@@ -11,6 +11,7 @@ GoRouter goRouters = GoRouter(
     GoRoute(path: AppRoutes.root, builder: (_, __) => const SplashScreen()),
     GoRoute(path: AppRoutes.home, builder: (_, __) => const ProductsPage()),
     GoRoute(path: AppRoutes.productDetails, builder: (_, __) => const ProductDetails()),
+    GoRoute(path: AppRoutes.carts, builder: (_, __) => const CartPage()),
 
     ],
 );

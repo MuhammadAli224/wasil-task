@@ -168,5 +168,7 @@ const Map<String, String> enLan = {
   "barcode": "Barcode",
   "qRCode": "QR Code",
   "tags": "Tags",
-  "reviews": "Reviews"
+  "reviews": "Reviews",
+  "removeFromCartSuccess": "Removed from cart successfully",
+  "addToCartSuccess": "Added to cart successfully"
 };

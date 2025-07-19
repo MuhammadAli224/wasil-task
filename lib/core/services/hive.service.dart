@@ -10,6 +10,8 @@ class HiveServices {
       _initAppBox(),
       _initializeBoxModel<AuthUserModel>(boxName: BoxKey.authUserBox),
       _initializeBoxModel<ProductsDTO>(boxName: BoxKey.products),
+      _initializeBoxModel<CartDTO>(boxName: BoxKey.carts),
+      // _initializeBoxModel<ProductsDTO>(boxName: BoxKey.products),
     ]);
   }
 
@@ -19,6 +21,7 @@ class HiveServices {
     _register<DimensionsDTO>(DimensionsDTOAdapter(), 102);
     _register<MetaDTO>(MetaDTOAdapter(), 103);
     _register<ReviewDTO>(ReviewDTOAdapter(), 104);
+    _register<CartDTO>(CartDTOAdapter(), 105);
   }
 
   Future<void> _initAppBox() async {

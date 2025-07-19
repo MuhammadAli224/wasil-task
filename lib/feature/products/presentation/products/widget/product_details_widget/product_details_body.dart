@@ -1,7 +1,8 @@
 import 'package:cached_network_image_plus/flutter_cached_network_image_plus.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import '../../../../../../global_imports.dart';
+import '../product_card_cart_widget.dart';
+import '../product_card_change_quantity.dart';
 import 'product_rating.dart';
 import 'product_review_card.dart';
 import 'product_section.dart';
@@ -19,9 +20,14 @@ class ProductDetailsBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(product.title, style: AppTextStyle.style28B),
-          4.gap,
-          Text(product.category, style: TextStyle(color: Colors.grey[600])),
+          5.gap,
+          Text(
+            product.category.toUpperCase(),
+            style: TextStyle(color: Colors.grey[600]),
+          ),
+          5.gap,
 
+          ProductCardCartWidget(product: product),
           12.gap,
           Row(
             children: [

@@ -12,7 +12,7 @@ class ProductSliverAppbar extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       floating: false,
-      expandedHeight: 300,
+      expandedHeight: 0.32.sh,
       flexibleSpace: FlexibleSpaceBar(
         title: Text(
           product.title,

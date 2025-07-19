@@ -1,11 +1,13 @@
 import '../../../../global_imports.dart';
 
+class GetCartUseCase {
+  final CartRepository repository;
 
-class CartUseCase {
-final CartRepository repository;
-CartUseCase(this.repository);
+  GetCartUseCase(this.repository);
 
-Future<Either<Failure, ApiResponse<CartEntity>>> call(CancelToken? cancelToken) {
-return repository.fetchAll(cancelToken:cancelToken);
-}
+  Future<Either<Failure, ApiResponse<CartEntity>>> call(
+    CancelToken? cancelToken,
+  ) {
+    return repository.fetchAll(cancelToken: cancelToken);
+  }
 }

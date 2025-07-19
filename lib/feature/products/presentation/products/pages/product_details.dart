@@ -7,17 +7,22 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductsEntity product = GoRouterState.of(context).extra as ProductsEntity;
+    final ProductsEntity product = GoRouterState
+        .of(context)
+        .extra as ProductsEntity;
     return Scaffold(
       // appBar: AppBar(
       //   title: Text(product.title),
       //
       // ),
-      body: CustomScrollView(
-        slivers: [
-          ProductSliverAppbar(product: product),
-          SliverToBoxAdapter(child: ProductDetailsBody( product: product)),
-        ],
+      body: BlocProvider(
+        create: (context) => getIt<CartCubit>()..fetchItems(),
+        child: CustomScrollView(
+          slivers: [
+            ProductSliverAppbar(product: product),
+            SliverToBoxAdapter(child: ProductDetailsBody(product: product)),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import '../../../../../global_imports.dart';
+import '../widget/cart_icon.dart';
 import '../widget/products_widget.dart';
 
 class ProductsPage extends StatelessWidget {
@@ -6,9 +7,18 @@ class ProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ProductsCubit>()..fetchItems(),
-      child: const Scaffold(body: SafeArea(child: ProductsWidget())),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => getIt<ProductsCubit>()..fetchItems()),
+        BlocProvider(create: (context) => getIt<CartCubit>()..fetchItems()),
+      ],
+      child:  Scaffold(
+          appBar: AppBar(
+            actions: const [
+              HomeCartIcon(),
+            ],
+          ),
+          body: const ProductsWidget()),
     );
   }
 }

@@ -15,23 +15,20 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   EasyLocalization.ensureInitialized();
   ErrorWidget.builder = (FlutterErrorDetails details) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Oops! An error occurred')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.error, color: Colors.red, size: 80),
-            20.gap,
-            Text(AppStrings.unknownError.tr(), style: AppTextStyle.style18B),
-            10.gap,
-            Text(
-              details.exceptionAsString(),
-              style: const TextStyle(color: Colors.grey),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error, color: Colors.red, size: 80),
+          20.gap,
+          Text(AppStrings.unknownError.tr(), style: AppTextStyle.style18B),
+          10.gap,
+          Text(
+            details.exceptionAsString(),
+            style: const TextStyle(color: Colors.grey),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   };

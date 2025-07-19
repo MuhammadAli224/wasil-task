@@ -29,7 +29,7 @@ dependencies:
   shimmer:
   flutter_carousel_widget:
   flutter_rating_bar:
-  #  flutter_time_guard: ^0.0.6
+  flutter_floating_bottom_bar: ^1.3.0
 
 
   # State Management
@@ -44,6 +44,7 @@ dependencies:
   freezed_annotation:
   flutter_secure_storage: ^9.2.4
   json_annotation:
+  collection:
 
   # Routing
   go_router: ^15.2.3

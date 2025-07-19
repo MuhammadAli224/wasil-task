@@ -1,5 +1,4 @@
 export 'data/datasources/cart/local_cart_data_source.dart';
-export 'data/datasources/cart/remote_cart_data_source.dart';
 export 'data/endpoint/cart_endpoint.dart';
 export 'data/model/cart_dto.dart';
 export 'data/repository/cart_repository_impl.dart';
@@ -8,5 +7,8 @@ export 'domain/entities/cart_entity.dart';
 export 'domain/mappers/cart_mapper.dart';
 export 'domain/repository/cart_repository.dart';
 export 'domain/usecases/get_cart_case.dart';
+export 'domain/usecases/add_to_cart_case.dart';
+export 'domain/usecases/remove_from_cart_case.dart';
+export 'domain/usecases/change_cart_quantity_case.dart';
 export 'presentation/cart/cubit/cart_cubit.dart';
 export 'presentation/cart/pages/cart_page.dart';

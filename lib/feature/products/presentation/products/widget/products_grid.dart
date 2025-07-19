@@ -19,8 +19,10 @@ class ProductsGrid extends StatelessWidget {
       itemBuilder: (context, index) {
         final product = products[index];
         return InkWell(
-          onTap: () {
-            context.push(AppRoutes.productDetails, extra: product);
+          onTap: () async {
+           await context.push(AppRoutes.productDetails, extra: product).then((_) async {
+             await context.read<CartCubit>().fetchItems();
+           });
           },
           child: ProductsCard(product: product),
         );

@@ -16,9 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartEntity {
-  String get name => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  num get price => throw _privateConstructorUsedError;
+  int get quantity => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
+  ProductsEntity get product => throw _privateConstructorUsedError;
 
   /// Create a copy of CartEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +34,10 @@ abstract class $CartEntityCopyWith<$Res> {
           CartEntity value, $Res Function(CartEntity) then) =
       _$CartEntityCopyWithImpl<$Res, CartEntity>;
   @useResult
-  $Res call({String name, String image, String? description});
+  $Res call(
+      {num price, int quantity, DateTime createdAt, ProductsEntity product});
+
+  $ProductsEntityCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -51,24 +55,39 @@ class _$CartEntityCopyWithImpl<$Res, $Val extends CartEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? image = null,
-    Object? description = freezed,
+    Object? price = null,
+    Object? quantity = null,
+    Object? createdAt = null,
+    Object? product = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as num,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductsEntity,
     ) as $Val);
+  }
+
+  /// Create a copy of CartEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductsEntityCopyWith<$Res> get product {
+    return $ProductsEntityCopyWith<$Res>(_value.product, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
   }
 }
 
@@ -80,7 +99,11 @@ abstract class _$$CartEntityImplCopyWith<$Res>
       __$$CartEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String image, String? description});
+  $Res call(
+      {num price, int quantity, DateTime createdAt, ProductsEntity product});
+
+  @override
+  $ProductsEntityCopyWith<$Res> get product;
 }
 
 /// @nodoc
@@ -96,23 +119,28 @@ class __$$CartEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? image = null,
-    Object? description = freezed,
+    Object? price = null,
+    Object? quantity = null,
+    Object? createdAt = null,
+    Object? product = null,
   }) {
     return _then(_$CartEntityImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as num,
+      quantity: null == quantity
+          ? _value.quantity
+          : quantity // ignore: cast_nullable_to_non_nullable
+              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      product: null == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductsEntity,
     ));
   }
 }
@@ -121,18 +149,23 @@ class __$$CartEntityImplCopyWithImpl<$Res>
 
 class _$CartEntityImpl implements _CartEntity {
   const _$CartEntityImpl(
-      {required this.name, required this.image, this.description});
+      {required this.price,
+      required this.quantity,
+      required this.createdAt,
+      required this.product});
 
   @override
-  final String name;
+  final num price;
   @override
-  final String image;
+  final int quantity;
   @override
-  final String? description;
+  final DateTime createdAt;
+  @override
+  final ProductsEntity product;
 
   @override
   String toString() {
-    return 'CartEntity(name: $name, image: $image, description: $description)';
+    return 'CartEntity(price: $price, quantity: $quantity, createdAt: $createdAt, product: $product)';
   }
 
   @override
@@ -140,14 +173,17 @@ class _$CartEntityImpl implements _CartEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartEntityImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.image, image) || other.image == image) &&
-            (identical(other.description, description) ||
-                other.description == description));
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.quantity, quantity) ||
+                other.quantity == quantity) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.product, product) || other.product == product));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, image, description);
+  int get hashCode =>
+      Object.hash(runtimeType, price, quantity, createdAt, product);
 
   /// Create a copy of CartEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -160,16 +196,19 @@ class _$CartEntityImpl implements _CartEntity {
 
 abstract class _CartEntity implements CartEntity {
   const factory _CartEntity(
-      {required final String name,
-      required final String image,
-      final String? description}) = _$CartEntityImpl;
+      {required final num price,
+      required final int quantity,
+      required final DateTime createdAt,
+      required final ProductsEntity product}) = _$CartEntityImpl;
 
   @override
-  String get name;
+  num get price;
   @override
-  String get image;
+  int get quantity;
   @override
-  String? get description;
+  DateTime get createdAt;
+  @override
+  ProductsEntity get product;
 
   /// Create a copy of CartEntity
   /// with the given fields replaced by the non-null parameter values.
