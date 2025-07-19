@@ -15,8 +15,10 @@ class HomeCartIcon extends StatelessWidget {
               alignment: Alignment.topRight,
               offset: const Offset(-2, 2),
               child: IconButton(
-                onPressed: () {
-                  context.push(AppRoutes.carts, extra: items);
+                onPressed: () async {
+                  await context.push(AppRoutes.carts).then((_) {
+                    context.read<CartCubit>().fetchItems();
+                  });
                 },
                 icon: const Icon(Icons.shopping_cart),
               ),
@@ -24,7 +26,11 @@ class HomeCartIcon extends StatelessWidget {
           },
           orElse:
               () => IconButton(
-                onPressed: () {},
+                onPressed: () async {
+                  await context.push(AppRoutes.carts).then((_) {
+                    context.read<CartCubit>().fetchItems();
+                  });
+                },
                 icon: const Icon(Icons.shopping_cart),
               ),
         );

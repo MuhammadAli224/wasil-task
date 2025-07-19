@@ -1,4 +1,6 @@
 import '../../../../../global_imports.dart';
+import 'cart_item_container.dart';
+import 'cart_total_pay_container.dart';
 
 class CartWidget extends StatelessWidget {
   const CartWidget({super.key});
@@ -27,23 +29,11 @@ class CartWidget extends StatelessWidget {
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       final item = items[index];
-                      return ListTile(
-                        title: Text(item.product.title),
-                        subtitle: Text(item.product.price.toString()),
-                      );
+                      return CartItemContainer(cartItem: item);
                     },
                   ),
                 ),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  color: Colors.grey.shade200,
-                  child: Text(
-                    "${AppStrings.total.tr()}: ${total.toStringAsFixed(2)}",
-                    style: AppTextStyle.style18,
-
-                  ),
-                ),
+                if (items.isNotEmpty) CartTotalPayContainer(total: total),
               ],
             );
           },

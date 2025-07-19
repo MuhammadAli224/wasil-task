@@ -7,14 +7,9 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductsEntity product = GoRouterState
-        .of(context)
-        .extra as ProductsEntity;
+    final ProductsEntity product =
+        GoRouterState.of(context).extra as ProductsEntity;
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(product.title),
-      //
-      // ),
       body: BlocProvider(
         create: (context) => getIt<CartCubit>()..fetchItems(),
         child: CustomScrollView(

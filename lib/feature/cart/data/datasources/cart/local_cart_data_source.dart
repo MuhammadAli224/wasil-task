@@ -57,9 +57,10 @@ class CartLocalDataSourceImpl extends CartLocalDataSource {
     if (_box.containsKey(id)) {
       final existingItem = _box.get(id);
       if (existingItem != null) {
+        logger.d(value);
         final updatedItem = existingItem.copyWith(
           quantity: value,
-          price: existingItem.price * value,
+          price: existingItem.product.price * value,
         );
         await _box.put(id, updatedItem);
       }

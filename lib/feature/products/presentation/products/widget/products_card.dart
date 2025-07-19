@@ -12,7 +12,6 @@ class ProductsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -33,29 +32,29 @@ class ProductsCard extends StatelessWidget {
             child: Column(
               children: [
                 Expanded(
-                  child: Hero(
-                    tag: '${product.id}',
-                    child: CacheNetworkImagePlus(imageUrl: product.thumbnail),
-                  ),
+                  child: CacheNetworkImagePlus(imageUrl: product.thumbnail),
                 ),
                 Expanded(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        product.title,
-                        textAlign: TextAlign.center,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyle.style18,
+                      Center(
+                        child: Text(
+                          product.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyle.style18,
+                        ),
                       ),
                       Text(
                         product.description,
                         textAlign: TextAlign.center,
                         maxLines: 2,
+
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyle.style12,
                       ),
-                      const Spacer(),
                       Row(
                         children: [
                           Text(
@@ -79,17 +78,8 @@ class ProductsCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ProductCardCartWidget(product: product),
-                          AutoSizeText(
-                            product.category.toUpperCase(),
-                            maxLines: 1,
-                            minFontSize: 8,
-                          ),
-                        ],
-                      ),
+
+                      ProductCardCartWidget(product: product),
                     ],
                   ),
                 ),

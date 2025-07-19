@@ -1,6 +1,6 @@
-import '../../../../../global_imports.dart';
 import 'package:collection/collection.dart';
 
+import '../../../../../global_imports.dart';
 import 'product_card_change_quantity.dart';
 
 class ProductCardCartWidget extends StatelessWidget {
@@ -13,9 +13,10 @@ class ProductCardCartWidget extends StatelessWidget {
     return BlocSelector<CartCubit, CartState, CartEntity?>(
       selector: (state) {
         return state.maybeWhen(
-          loaded: (items, _, __) => items.firstWhereOrNull(
+          loaded:
+              (items, _, __) => items.firstWhereOrNull(
                 (item) => item.product.id == product.id,
-          ),
+              ),
           orElse: () => null,
         );
       },
@@ -26,11 +27,11 @@ class ProductCardCartWidget extends StatelessWidget {
             quantity: inCart.quantity,
           );
         } else {
-          return IconButton(
-            onPressed: () {
+          return InkWell(
+            onTap: () {
               context.read<CartCubit>().addToCart(product);
             },
-            icon: const Icon(
+            child: const Icon(
               Icons.add_shopping_cart_outlined,
               color: AppColor.secondaryColor,
             ),
