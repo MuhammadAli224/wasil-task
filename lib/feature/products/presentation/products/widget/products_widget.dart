@@ -7,17 +7,19 @@ class ProductsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocListener<CartCubit, CartState>(
-      listenWhen: (previous, current) =>
-      current is CartLoaded &&
-          current.msg != null &&
-          current.msg != (previous is CartLoaded ? previous.msg : null),
+    return BlocListener<CartCubit, CartState>(
+      listenWhen:
+          (previous, current) =>
+              current is CartLoaded &&
+              current.msg != null &&
+              current.msg != (previous is CartLoaded ? previous.msg : null),
       listener: (context, state) {
         final cartLoaded = state as CartLoaded;
 
-        final contentType = cartLoaded.code == 201
-            ? BarContentType.success
-            : BarContentType.failure;
+        final contentType =
+            cartLoaded.code == 201
+                ? BarContentType.success
+                : BarContentType.failure;
 
         showBar(
           title: AppStrings.success.tr(),
@@ -32,10 +34,9 @@ class ProductsWidget extends StatelessWidget {
           return state.when(
             initial: () => const SizedBox.shrink(),
             loading: () => const ProductsLoadingWidget(),
-            loaded: (products) => ProductsGrid(products: products),
+            loaded: (products, _) => ProductsGrid(products: products),
             error:
-                (msg) =>
-                ErrorScreen(
+                (msg) => ErrorScreen(
                   errorMessage: msg.tr(),
                   onTap: () => context.read<ProductsCubit>().fetchItems(),
                 ),

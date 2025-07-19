@@ -5,6 +5,7 @@ export 'data/model/products_dto.dart';
 export 'data/repository/products_repository_impl.dart';
 export 'di/products_di.dart';
 export 'domain/entities/products_entity.dart';
+export 'domain/enums/product_sort_enum.dart';
 export 'domain/mappers/products_mapper.dart';
 export 'domain/repository/products_repository.dart';
 export 'domain/usecases/get_products_case.dart';

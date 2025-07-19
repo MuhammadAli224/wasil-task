@@ -106,11 +106,11 @@ class ProductsCard extends StatelessWidget {
               ),
             ),
 
-          const Positioned(
-            top: 8,
-            left: 8,
-            child: Icon(Icons.favorite, color: AppColor.red, size: 30),
-          ),
+          // const Positioned(
+          //   top: 8,
+          //   left: 8,
+          //   child: Icon(Icons.favorite, color: AppColor.red, size: 30),
+          // ),
         ],
       ),
     );
