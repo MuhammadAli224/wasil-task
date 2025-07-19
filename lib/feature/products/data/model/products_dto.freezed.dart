@@ -49,7 +49,7 @@ mixin _$ProductsDTO {
   List<String> get tags => throw _privateConstructorUsedError;
   @HiveField(9)
   @JsonKey(name: "brand")
-  String get brand => throw _privateConstructorUsedError;
+  String? get brand => throw _privateConstructorUsedError;
   @HiveField(10)
   @JsonKey(name: "sku")
   String get sku => throw _privateConstructorUsedError;
@@ -115,7 +115,7 @@ abstract class $ProductsDTOCopyWith<$Res> {
       @HiveField(6) @JsonKey(name: "rating") double rating,
       @HiveField(7) @JsonKey(name: "stock") int stock,
       @HiveField(8) @JsonKey(name: "tags") List<String> tags,
-      @HiveField(9) @JsonKey(name: "brand") String brand,
+      @HiveField(9) @JsonKey(name: "brand") String? brand,
       @HiveField(10) @JsonKey(name: "sku") String sku,
       @HiveField(11) @JsonKey(name: "weight") int weight,
       @HiveField(12) @JsonKey(name: "dimensions") DimensionsDTO dimensions,
@@ -165,7 +165,7 @@ class _$ProductsDTOCopyWithImpl<$Res, $Val extends ProductsDTO>
     Object? rating = null,
     Object? stock = null,
     Object? tags = null,
-    Object? brand = null,
+    Object? brand = freezed,
     Object? sku = null,
     Object? weight = null,
     Object? dimensions = null,
@@ -216,10 +216,10 @@ class _$ProductsDTOCopyWithImpl<$Res, $Val extends ProductsDTO>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      brand: null == brand
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       sku: null == sku
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -312,7 +312,7 @@ abstract class _$$ProductsDTOImplCopyWith<$Res>
       @HiveField(6) @JsonKey(name: "rating") double rating,
       @HiveField(7) @JsonKey(name: "stock") int stock,
       @HiveField(8) @JsonKey(name: "tags") List<String> tags,
-      @HiveField(9) @JsonKey(name: "brand") String brand,
+      @HiveField(9) @JsonKey(name: "brand") String? brand,
       @HiveField(10) @JsonKey(name: "sku") String sku,
       @HiveField(11) @JsonKey(name: "weight") int weight,
       @HiveField(12) @JsonKey(name: "dimensions") DimensionsDTO dimensions,
@@ -362,7 +362,7 @@ class __$$ProductsDTOImplCopyWithImpl<$Res>
     Object? rating = null,
     Object? stock = null,
     Object? tags = null,
-    Object? brand = null,
+    Object? brand = freezed,
     Object? sku = null,
     Object? weight = null,
     Object? dimensions = null,
@@ -413,10 +413,10 @@ class __$$ProductsDTOImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      brand: null == brand
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       sku: null == sku
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -485,7 +485,7 @@ class _$ProductsDTOImpl implements _ProductsDTO {
       @HiveField(6) @JsonKey(name: "rating") required this.rating,
       @HiveField(7) @JsonKey(name: "stock") required this.stock,
       @HiveField(8) @JsonKey(name: "tags") required final List<String> tags,
-      @HiveField(9) @JsonKey(name: "brand") required this.brand,
+      @HiveField(9) @JsonKey(name: "brand") this.brand,
       @HiveField(10) @JsonKey(name: "sku") required this.sku,
       @HiveField(11) @JsonKey(name: "weight") required this.weight,
       @HiveField(12) @JsonKey(name: "dimensions") required this.dimensions,
@@ -562,7 +562,7 @@ class _$ProductsDTOImpl implements _ProductsDTO {
   @override
   @HiveField(9)
   @JsonKey(name: "brand")
-  final String brand;
+  final String? brand;
   @override
   @HiveField(10)
   @JsonKey(name: "sku")
@@ -727,7 +727,7 @@ abstract class _ProductsDTO implements ProductsDTO {
       @HiveField(6) @JsonKey(name: "rating") required final double rating,
       @HiveField(7) @JsonKey(name: "stock") required final int stock,
       @HiveField(8) @JsonKey(name: "tags") required final List<String> tags,
-      @HiveField(9) @JsonKey(name: "brand") required final String brand,
+      @HiveField(9) @JsonKey(name: "brand") final String? brand,
       @HiveField(10) @JsonKey(name: "sku") required final String sku,
       @HiveField(11) @JsonKey(name: "weight") required final int weight,
       @HiveField(12)
@@ -801,7 +801,7 @@ abstract class _ProductsDTO implements ProductsDTO {
   @override
   @HiveField(9)
   @JsonKey(name: "brand")
-  String get brand;
+  String? get brand;
   @override
   @HiveField(10)
   @JsonKey(name: "sku")

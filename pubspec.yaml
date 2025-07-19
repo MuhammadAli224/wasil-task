@@ -28,6 +28,7 @@ dependencies:
   flutter_dotenv:
   shimmer:
   flutter_carousel_widget:
+  flutter_rating_bar:
   #  flutter_time_guard: ^0.0.6
 
 

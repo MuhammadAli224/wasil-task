@@ -14,7 +14,7 @@ class ProductsEntity with _$ProductsEntity {
     required double rating,
     required int stock,
     required List<String> tags,
-    required String brand,
+    String? brand,
     required String sku,
     required int weight,
     required DimensionsEntity dimensions,

@@ -26,7 +26,7 @@ class ProductsDTOAdapter extends TypeAdapter<_$ProductsDTOImpl> {
       rating: fields[6] as double,
       stock: fields[7] as int,
       tags: (fields[8] as List).cast<String>(),
-      brand: fields[9] as String,
+      brand: fields[9] as String?,
       sku: fields[10] as String,
       weight: fields[11] as int,
       dimensions: fields[12] as DimensionsDTO,
@@ -247,7 +247,7 @@ _$ProductsDTOImpl _$$ProductsDTOImplFromJson(Map<String, dynamic> json) =>
       rating: (json['rating'] as num).toDouble(),
       stock: (json['stock'] as num).toInt(),
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      brand: json['brand'] as String,
+      brand: json['brand'] as String?,
       sku: json['sku'] as String,
       weight: (json['weight'] as num).toInt(),
       dimensions:

@@ -16,9 +16,9 @@ class ProductsCubit extends Cubit<ProductsState>
 
     final result = await _getProductsUseCase(cancelToken: cancelToken);
     if (isClosed) return;
-    // result.fold(
-    // (failure) => safeEmit(ProductsState.error(failure.message)),
-    // (products) => safeEmit(ProductsState.loaded(products)),
-    // );
+    result.fold(
+      (failure) => safeEmit(ProductsState.error(failure.message)),
+      (response) => safeEmit(ProductsState.loaded(response.list ?? [])),
+    );
   }
 }

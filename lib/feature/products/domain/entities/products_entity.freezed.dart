@@ -25,7 +25,7 @@ mixin _$ProductsEntity {
   double get rating => throw _privateConstructorUsedError;
   int get stock => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
-  String get brand => throw _privateConstructorUsedError;
+  String? get brand => throw _privateConstructorUsedError;
   String get sku => throw _privateConstructorUsedError;
   int get weight => throw _privateConstructorUsedError;
   DimensionsEntity get dimensions => throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ abstract class $ProductsEntityCopyWith<$Res> {
       double rating,
       int stock,
       List<String> tags,
-      String brand,
+      String? brand,
       String sku,
       int weight,
       DimensionsEntity dimensions,
@@ -104,7 +104,7 @@ class _$ProductsEntityCopyWithImpl<$Res, $Val extends ProductsEntity>
     Object? rating = null,
     Object? stock = null,
     Object? tags = null,
-    Object? brand = null,
+    Object? brand = freezed,
     Object? sku = null,
     Object? weight = null,
     Object? dimensions = null,
@@ -155,10 +155,10 @@ class _$ProductsEntityCopyWithImpl<$Res, $Val extends ProductsEntity>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      brand: null == brand
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       sku: null == sku
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -249,7 +249,7 @@ abstract class _$$ProductsEntityImplCopyWith<$Res>
       double rating,
       int stock,
       List<String> tags,
-      String brand,
+      String? brand,
       String sku,
       int weight,
       DimensionsEntity dimensions,
@@ -291,7 +291,7 @@ class __$$ProductsEntityImplCopyWithImpl<$Res>
     Object? rating = null,
     Object? stock = null,
     Object? tags = null,
-    Object? brand = null,
+    Object? brand = freezed,
     Object? sku = null,
     Object? weight = null,
     Object? dimensions = null,
@@ -342,10 +342,10 @@ class __$$ProductsEntityImplCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      brand: null == brand
+      brand: freezed == brand
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       sku: null == sku
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -411,7 +411,7 @@ class _$ProductsEntityImpl implements _ProductsEntity {
       required this.rating,
       required this.stock,
       required final List<String> tags,
-      required this.brand,
+      this.brand,
       required this.sku,
       required this.weight,
       required this.dimensions,
@@ -453,7 +453,7 @@ class _$ProductsEntityImpl implements _ProductsEntity {
   }
 
   @override
-  final String brand;
+  final String? brand;
   @override
   final String sku;
   @override
@@ -583,7 +583,7 @@ abstract class _ProductsEntity implements ProductsEntity {
       required final double rating,
       required final int stock,
       required final List<String> tags,
-      required final String brand,
+      final String? brand,
       required final String sku,
       required final int weight,
       required final DimensionsEntity dimensions,
@@ -616,7 +616,7 @@ abstract class _ProductsEntity implements ProductsEntity {
   @override
   List<String> get tags;
   @override
-  String get brand;
+  String? get brand;
   @override
   String get sku;
   @override

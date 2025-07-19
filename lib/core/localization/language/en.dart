@@ -97,7 +97,7 @@ const Map<String, String> enLan = {
   "add": "Add {}",
   "delete": "Delete {}",
 
-  "currency": "SAR",
+  "currency": "JD",
   "requiredField": "Required Field",
   "search": "search",
 
@@ -155,4 +155,18 @@ const Map<String, String> enLan = {
   'nameAr': 'Name Arabic',
   'nameEn': 'Name English',
   'warning': 'Warning',
+  "brand": "Brand",
+  "sku": "SKU",
+  "stock": "Stock",
+  "weight": "Weight",
+  "dimensions": "Dimensions",
+  "warranty": "Warranty",
+  "shipping": "Shipping Information",
+  "availability": "Availability",
+  "returnPolicy": "Return Policy",
+  "minimumOrder": "Minimum Order Quantity",
+  "barcode": "Barcode",
+  "qRCode": "QR Code",
+  "tags": "Tags",
+  "reviews": "Reviews"
 };

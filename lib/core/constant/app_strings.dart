@@ -4,7 +4,7 @@ abstract class AppStrings {
   static const String appName = "Ibn Rush Academy";
   static const String hello = "hello";
   static const String now = "now";
-  static const String currency = "sar";
+  static const String currency = "currency";
   static const String badRequest = "badRequest";
   static const String search = "search";
   static const String unauthorized = "unauthorized";
@@ -170,6 +170,20 @@ abstract class AppStrings {
   static const String tryAgain = "tryAgain";
   static const String confirm = "confirm";
   static const String apply = "apply";
+  static const String brand = "brand";
+  static const String sku = "sku";
+  static const String stock = "stock";
+  static const String weight = "weight";
+  static const String dimensions = "dimensions";
+  static const String warranty = "warranty";
+  static const String shipping = "shipping";
+  static const String availability = "availability";
+  static const String returnPolicy = "returnPolicy";
+  static const String minimumOrder = "minimumOrder";
+  static const String barcode = "barcode";
+  static const String qRCode = "qRCode";
+  static const String tags = "tags";
+  static const String reviews = "reviews";
 
   /////////////////////////////
 }

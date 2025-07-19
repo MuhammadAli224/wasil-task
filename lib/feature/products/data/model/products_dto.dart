@@ -19,7 +19,7 @@ class ProductsDTO with _$ProductsDTO {
     @HiveField(6) @JsonKey(name: "rating") required double rating,
     @HiveField(7) @JsonKey(name: "stock") required int stock,
     @HiveField(8) @JsonKey(name: "tags") required List<String> tags,
-    @HiveField(9) @JsonKey(name: "brand") required String brand,
+    @HiveField(9) @JsonKey(name: "brand")  String? brand,
     @HiveField(10) @JsonKey(name: "sku") required String sku,
     @HiveField(11) @JsonKey(name: "weight") required int weight,
     @HiveField(12)

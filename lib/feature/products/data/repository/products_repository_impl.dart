@@ -24,7 +24,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
       if (isConnected) {
         final apiResponse = await _remote.getProducts(cancelToken);
 
-        if (apiResponse.success && apiResponse.list != null) {
+        if ( apiResponse.list != null) {
           await _local.saveProducts(
             products: apiResponse.list!,
             deleteMissing: true,

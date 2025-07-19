@@ -20,6 +20,7 @@ class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
     final apiResponse = ApiResponse<ProductsDTO>.fromJson(
       response,
       (json) => ProductsDTO.fromJson(json),
+      'products'
     );
     return apiResponse;
   }
