@@ -36,7 +36,7 @@ class CartRepositoryImpl implements CartRepository {
         ApiResponse(
           message: AppStrings.addToCartSuccess.tr(),
           list: result.toEntity(),
-          code: 200,
+          code: 201,
         ),
       );
     } catch (e, t) {
@@ -80,7 +80,7 @@ class CartRepositoryImpl implements CartRepository {
         ApiResponse(
           message: AppStrings.removeFromCartSuccess.tr(),
           list: result.toEntity(),
-          code: 200,
+          code: 203,
         ),
       );
     } catch (e, t) {

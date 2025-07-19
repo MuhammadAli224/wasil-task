@@ -24,7 +24,7 @@ class CartCubit extends Cubit<CartState> with CubitLifecycleMixin<CartState> {
     if (isClosed) return;
     result.fold(
       (failure) => safeEmit(CartState.error(failure.message)),
-      (response) => safeEmit(CartState.loaded(response.list ?? [])),
+      (response) => safeEmit(CartState.loaded(items: response.list ?? [])),
     );
   }
 
@@ -43,7 +43,13 @@ class CartCubit extends Cubit<CartState> with CubitLifecycleMixin<CartState> {
     if (isClosed) return;
     result.fold(
       (failure) => safeEmit(CartState.error(failure.message)),
-      (response) => safeEmit(CartState.loaded(response.list ?? [])),
+      (response) => safeEmit(
+        CartState.loaded(
+          items: response.list ?? [],
+          msg: response.message,
+          code: response.code,
+        ),
+      ),
     );
   }
 
@@ -57,7 +63,13 @@ class CartCubit extends Cubit<CartState> with CubitLifecycleMixin<CartState> {
     if (isClosed) return;
     result.fold(
       (failure) => safeEmit(CartState.error(failure.message)),
-      (response) => safeEmit(CartState.loaded(response.list ?? [])),
+      (response) => safeEmit(
+        CartState.loaded(
+          items: response.list ?? [],
+          msg: response.message,
+          code: response.code,
+        ),
+      ),
     );
   }
 
@@ -75,7 +87,14 @@ class CartCubit extends Cubit<CartState> with CubitLifecycleMixin<CartState> {
     if (isClosed) return;
     result.fold(
       (failure) => safeEmit(CartState.error(failure.message)),
-      (response) => safeEmit(CartState.loaded(response.list ?? [])),
+      (response) => safeEmit(CartState.loaded(items: response.list ?? [])),
     );
+  }
+
+  void clearMsg() {
+    final currentState = state;
+    if (currentState is CartLoaded && currentState.msg != null) {
+      safeEmit(currentState.copyWith(msg: null,code: 200));
+    }
   }
 }

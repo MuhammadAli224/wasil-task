@@ -8,11 +8,12 @@ class HomeCartIcon extends StatelessWidget {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
         return state.maybeWhen(
-          loaded: (items) {
+          loaded: (items, _, _) {
             return Badge(
               label: Text(items.length.toString()),
               isLabelVisible: items.isNotEmpty,
               alignment: Alignment.topRight,
+              offset: const Offset(-2, 2),
               child: IconButton(
                 onPressed: () {
                   context.push(AppRoutes.carts, extra: items);

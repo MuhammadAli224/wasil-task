@@ -20,7 +20,8 @@ mixin _$CartState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> items) loaded,
+    required TResult Function(List<CartEntity> items, String? msg, int code)
+        loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +29,7 @@ mixin _$CartState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> items)? loaded,
+    TResult? Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +37,7 @@ mixin _$CartState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> items)? loaded,
+    TResult Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -131,7 +132,8 @@ class _$CartInitialImpl implements CartInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> items) loaded,
+    required TResult Function(List<CartEntity> items, String? msg, int code)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -142,7 +144,7 @@ class _$CartInitialImpl implements CartInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> items)? loaded,
+    TResult? Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -153,7 +155,7 @@ class _$CartInitialImpl implements CartInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> items)? loaded,
+    TResult Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -248,7 +250,8 @@ class _$CartLoadingImpl implements CartLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> items) loaded,
+    required TResult Function(List<CartEntity> items, String? msg, int code)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -259,7 +262,7 @@ class _$CartLoadingImpl implements CartLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> items)? loaded,
+    TResult? Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -270,7 +273,7 @@ class _$CartLoadingImpl implements CartLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> items)? loaded,
+    TResult Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -328,7 +331,7 @@ abstract class _$$CartLoadedImplCopyWith<$Res> {
           _$CartLoadedImpl value, $Res Function(_$CartLoadedImpl) then) =
       __$$CartLoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CartEntity> items});
+  $Res call({List<CartEntity> items, String? msg, int code});
 }
 
 /// @nodoc
@@ -345,12 +348,22 @@ class __$$CartLoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
+    Object? msg = freezed,
+    Object? code = null,
   }) {
     return _then(_$CartLoadedImpl(
-      null == items
+      items: null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<CartEntity>,
+      msg: freezed == msg
+          ? _value.msg
+          : msg // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -358,7 +371,9 @@ class __$$CartLoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CartLoadedImpl implements CartLoaded {
-  const _$CartLoadedImpl(final List<CartEntity> items) : _items = items;
+  const _$CartLoadedImpl(
+      {required final List<CartEntity> items, this.msg, this.code = 200})
+      : _items = items;
 
   final List<CartEntity> _items;
   @override
@@ -369,8 +384,14 @@ class _$CartLoadedImpl implements CartLoaded {
   }
 
   @override
+  final String? msg;
+  @override
+  @JsonKey()
+  final int code;
+
+  @override
   String toString() {
-    return 'CartState.loaded(items: $items)';
+    return 'CartState.loaded(items: $items, msg: $msg, code: $code)';
   }
 
   @override
@@ -378,12 +399,14 @@ class _$CartLoadedImpl implements CartLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CartLoadedImpl &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            (identical(other.msg, msg) || other.msg == msg) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_items), msg, code);
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -398,10 +421,11 @@ class _$CartLoadedImpl implements CartLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> items) loaded,
+    required TResult Function(List<CartEntity> items, String? msg, int code)
+        loaded,
     required TResult Function(String message) error,
   }) {
-    return loaded(items);
+    return loaded(items, msg, code);
   }
 
   @override
@@ -409,10 +433,10 @@ class _$CartLoadedImpl implements CartLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> items)? loaded,
+    TResult? Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult? Function(String message)? error,
   }) {
-    return loaded?.call(items);
+    return loaded?.call(items, msg, code);
   }
 
   @override
@@ -420,12 +444,12 @@ class _$CartLoadedImpl implements CartLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> items)? loaded,
+    TResult Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(items);
+      return loaded(items, msg, code);
     }
     return orElse();
   }
@@ -469,9 +493,14 @@ class _$CartLoadedImpl implements CartLoaded {
 }
 
 abstract class CartLoaded implements CartState {
-  const factory CartLoaded(final List<CartEntity> items) = _$CartLoadedImpl;
+  const factory CartLoaded(
+      {required final List<CartEntity> items,
+      final String? msg,
+      final int code}) = _$CartLoadedImpl;
 
   List<CartEntity> get items;
+  String? get msg;
+  int get code;
 
   /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
@@ -550,7 +579,8 @@ class _$CartErrorImpl implements CartError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<CartEntity> items) loaded,
+    required TResult Function(List<CartEntity> items, String? msg, int code)
+        loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -561,7 +591,7 @@ class _$CartErrorImpl implements CartError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<CartEntity> items)? loaded,
+    TResult? Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -572,7 +602,7 @@ class _$CartErrorImpl implements CartError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<CartEntity> items)? loaded,
+    TResult Function(List<CartEntity> items, String? msg, int code)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

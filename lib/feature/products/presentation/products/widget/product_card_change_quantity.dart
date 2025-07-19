@@ -16,7 +16,10 @@ class ProductCardChangeQuantity extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         IconButton(
-          icon: Icon(quantity > 1 ? Icons.remove : Icons.delete_outline, color: AppColor.red),
+          icon: Icon(
+            quantity > 1 ? Icons.remove : Icons.delete_outline,
+            color: AppColor.red,
+          ),
           onPressed:
               quantity > 1
                   ? () => context.read<CartCubit>().updateQuantity(
