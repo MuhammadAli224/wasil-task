@@ -15,7 +15,7 @@ class ProductDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsGeometry.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,7 +32,8 @@ class ProductDetailsBody extends StatelessWidget {
           Row(
             children: [
               Text(
-                "${product.price.toStringAsFixed(2)} ${AppStrings.currency.tr()}",
+                "${product.price.toStringAsFixed(2)} ${AppStrings.currency
+                    .tr()}",
                 style: AppTextStyle.style20B,
               ),
               10.gap,
@@ -67,7 +68,8 @@ class ProductDetailsBody extends StatelessWidget {
           ProductSection(
             title: AppStrings.dimensions.tr(),
             value:
-                "${product.dimensions.width} × ${product.dimensions.height} × ${product.dimensions.depth} cm",
+            "${product.dimensions.width} × ${product.dimensions
+                .height} × ${product.dimensions.depth} cm",
           ),
           ProductSection(
             title: AppStrings.warranty.tr(),
@@ -96,7 +98,7 @@ class ProductDetailsBody extends StatelessWidget {
           Wrap(
             spacing: 8,
             children:
-                product.tags.map((tag) => Chip(label: Text(tag))).toList(),
+            product.tags.map((tag) => Chip(label: Text(tag))).toList(),
           ),
 
           const Divider(height: 32),
