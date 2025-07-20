@@ -34,7 +34,11 @@ class ProductsWidget extends StatelessWidget {
           return state.when(
             initial: () => const SizedBox.shrink(),
             loading: () => const ProductsLoadingWidget(),
-            loaded: (products, _) => ProductsGrid(products: products),
+            loaded: (filteredItems, originalItems, _) {
+              final products =
+                  filteredItems.isEmpty ? originalItems : filteredItems;
+              return ProductsGrid(products: products);
+            },
             error:
                 (msg) => ErrorScreen(
                   errorMessage: msg.tr(),

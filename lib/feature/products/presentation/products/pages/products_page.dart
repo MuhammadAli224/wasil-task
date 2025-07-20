@@ -1,5 +1,6 @@
 import '../../../../../global_imports.dart';
 import '../widget/cart_icon.dart';
+import '../widget/product_filter/product_filter_icon.dart';
 import '../widget/products_widget.dart';
 
 class ProductsPage extends StatelessWidget {
@@ -12,13 +13,10 @@ class ProductsPage extends StatelessWidget {
         BlocProvider(create: (context) => getIt<ProductsCubit>()..fetchItems()),
         BlocProvider(create: (context) => getIt<CartCubit>()..fetchItems()),
       ],
-      child:  Scaffold(
-          appBar: AppBar(
-            actions: const [
-              HomeCartIcon(),
-            ],
-          ),
-          body: const ProductsWidget()),
+      child: Scaffold(
+        appBar: AppBar(actions: const [ProductFilterIcon(), HomeCartIcon()]),
+        body: const ProductsWidget(),
+      ),
     );
   }
 }

@@ -1,7 +1,7 @@
 abstract class AppStrings {
   AppStrings._();
 
-  static const String appName = "Ibn Rush Academy";
+  static const String appName = "WasilTask";
   static const String hello = "hello";
   static const String now = "now";
   static const String currency = "currency";
@@ -186,6 +186,16 @@ abstract class AppStrings {
   static const String reviews = "reviews";
   static const String removeFromCartSuccess = "removeFromCartSuccess";
   static const String addToCartSuccess = "addToCartSuccess";
+  static const String addToCart = "addToCart";
+  static const String filterProducts = "filterProducts";
+  static const String productName = "productName";
+  static const String priceRange = "priceRange";
+  static const String sortOrder = "sortOrder";
+  static const String productSortField = "productSortField";
+  static const String rating = "rating";
+  static const String createdAt = "createdAt";
+  static const String ascending = "ascending";
+  static const String descending = "descending";
 
   /////////////////////////////
 }

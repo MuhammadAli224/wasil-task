@@ -170,5 +170,15 @@ const Map<String, String> enLan = {
   "tags": "Tags",
   "reviews": "Reviews",
   "removeFromCartSuccess": "Removed from cart successfully",
-  "addToCartSuccess": "Added to cart successfully"
+  "addToCartSuccess": "Added to cart successfully",
+  "addToCart": "Added to cart",
+  "filterProducts": "Filter Products",
+  "productName": "Product Name",
+  "priceRange": "Price Range",
+  "sortOrder": "Sort Order",
+  "productSortField": "Sort By",
+  "rating": "Rating",
+  "createdAt": "Created At",
+  "ascending": "Ascending",
+  "descending": "Descending",
 };

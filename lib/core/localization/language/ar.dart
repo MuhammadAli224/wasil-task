@@ -150,5 +150,15 @@ const Map<String, String> arLan = {
   "tags": "الوسوم",
   "reviews": "التقييمات",
   "removeFromCartSuccess": "تمت إزالة المنتج من السلة بنجاح",
-  "addToCartSuccess": "تمت إضافة المنتج إلى السلة بنجاح"
+  "addToCartSuccess": "تمت إضافة المنتج إلى السلة بنجاح",
+  "addToCart": " إضافة إلى السلة",
+  "filterProducts": "تصفية المنتجات",
+  "productName": "اسم المنتج",
+  "priceRange": "نطاق السعر",
+  "sortOrder": "ترتيب الفرز",
+  "productSortField": "فرز حسب",
+  "rating": "التقييم",
+  "createdAt": "تاريخ الإضافة",
+  "ascending": "تصاعدي",
+  "descending": "تنازلي",
 };

@@ -1,11 +1,13 @@
 import '../../../../../global_imports.dart';
 
 part 'products_cubit.freezed.dart';
+
 part 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState>
     with CubitLifecycleMixin<ProductsState> {
   final GetProductsUseCase _getProductsUseCase;
+  ProductsFilters currentFilter = const ProductsFilters();
 
   ProductsCubit(this._getProductsUseCase)
     : super(const ProductsState.initial());
@@ -19,85 +21,84 @@ class ProductsCubit extends Cubit<ProductsState>
       (failure) => safeEmit(ProductsState.error(failure.message)),
       (response) => safeEmit(
         ProductsState.loaded(
-          response.list ?? [],
+          filteredItems: [],
+          filters: currentFilter,
           originalItems: response.list ?? [],
         ),
       ),
     );
   }
 
-  void filterAndSort({
-    String? searchKeyword,
-    String? category,
-    double? minPrice,
-    double? maxPrice,
-    ProductSortField? sortBy,
-    SortOrder sortOrder = SortOrder.ascending,
-  }) {
-    final currentState = state;
-    if (currentState is! ProductsLoaded) return;
+  void applyFilters(ProductsFilters filters) {
+    if (state is! ProductsLoaded) return;
 
-    List<ProductsEntity> filtered = currentState.originalItems;
+    final currentState = state as ProductsLoaded;
+    final List<ProductsEntity> original = currentState.originalItems;
 
-    if (searchKeyword != null && searchKeyword.isNotEmpty) {
-      filtered =
-          filtered
-              .where(
-                (p) =>
-                    p.title.toLowerCase().contains(
-                      searchKeyword.toLowerCase(),
-                    ) ||
-                    p.description.toLowerCase().contains(
-                      searchKeyword.toLowerCase(),
-                    ),
-              )
-              .toList();
+    final filtered =
+        original.where((product) {
+          final matchesKeyword =
+              filters.searchKeyword == null ||
+              product.title.toLowerCase().contains(
+                filters.searchKeyword!.toLowerCase(),
+              );
+
+          final matchesCategory =
+              filters.category == null || product.category == filters.category;
+
+          final matchesMinPrice =
+              filters.minPrice == null || product.price >= filters.minPrice!;
+
+          final matchesMaxPrice =
+              filters.maxPrice == null || product.price <= filters.maxPrice!;
+
+          return matchesKeyword &&
+              matchesCategory &&
+              matchesMinPrice &&
+              matchesMaxPrice;
+        }).toList();
+
+    if (filters.sortBy != null) {
+      filtered.sort((a, b) {
+        final sortResult = switch (filters.sortBy!) {
+          ProductSortField.price => a.price.compareTo(b.price),
+          ProductSortField.title => a.title.compareTo(b.title),
+          ProductSortField.rating => a.rating.compareTo(b.rating),
+          ProductSortField.createdAt => a.meta.createdAt.compareTo(
+            b.meta.createdAt,
+          ),
+        };
+        return filters.sortOrder == SortOrder.ascending
+            ? sortResult
+            : -sortResult;
+      });
     }
 
-    if (category != null && category.isNotEmpty) {
-      filtered = filtered.where((p) => p.category == category).toList();
-    }
+    currentFilter = filters;
 
-    if (minPrice != null) {
-      filtered = filtered.where((p) => p.price >= minPrice).toList();
-    }
-
-    if (maxPrice != null) {
-      filtered = filtered.where((p) => p.price <= maxPrice).toList();
-    }
-
-    int Function(ProductsEntity, ProductsEntity)? compare;
-    switch (sortBy) {
-      case ProductSortField.price:
-        compare = (a, b) => a.price.compareTo(b.price);
-        break;
-      case ProductSortField.rating:
-        compare = (a, b) => a.rating.compareTo(b.rating);
-        break;
-      case ProductSortField.title:
-        compare = (a, b) => a.title.compareTo(b.title);
-        break;
-      case ProductSortField.createdAt:
-        compare = (a, b) => a.meta.createdAt.compareTo(b.meta.createdAt);
-        break;
-      case null:
-        break;
-    }
-
-    if (compare != null) {
-      filtered.sort(compare);
-      if (sortOrder == SortOrder.descending) {
-        filtered = filtered.reversed.toList();
-      }
-    }
-
-    safeEmit(currentState.copyWith(items: filtered));
+    safeEmit(
+      ProductsState.loaded(
+        filteredItems: filtered,
+        originalItems: original,
+        filters: filters,
+      ),
+    );
   }
 
   void resetFilters() {
-    final currentState = state;
-    if (currentState is ProductsLoaded) {
-      safeEmit(currentState.copyWith(items: currentState.originalItems));
-    }
+    if (state is! ProductsLoaded) return;
+
+    final currentState = state as ProductsLoaded;
+    final List<ProductsEntity> original = currentState.originalItems;
+
+    currentFilter = const ProductsFilters();
+
+    safeEmit(
+      ProductsState.loaded(
+        filteredItems: [],
+        originalItems: original,
+        filters: currentFilter,
+      ),
+    );
   }
 }

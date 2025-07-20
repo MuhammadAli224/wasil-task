@@ -79,7 +79,7 @@ class ProductsCard extends StatelessWidget {
                         ],
                       ),
 
-                      ProductCardCartWidget(product: product),
+                      ProductCardCartWidget.button(product: product),
                     ],
                   ),
                 ),
