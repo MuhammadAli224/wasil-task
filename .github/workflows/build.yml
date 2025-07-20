@@ -33,10 +33,19 @@ jobs:
         run: flutter pub get
 
       - name: Build Release APK
-        run: flutter build apk
+        run: flutter build apk --release
+
+      - name: Build Debug APK
+        run: flutter build apk --debug
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v4.6.2
         with:
           name: QA-Testing-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: QA-Testing-APK-Debug
           path: build/app/outputs/flutter-apk/app-debug.apk
