@@ -181,4 +181,5 @@ const Map<String, String> enLan = {
   "createdAt": "Created At",
   "ascending": "Ascending",
   "descending": "Descending",
+  "noUserFoundHint": "You must log in first!",
 };

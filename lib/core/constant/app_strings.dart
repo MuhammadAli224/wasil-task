@@ -196,6 +196,7 @@ abstract class AppStrings {
   static const String createdAt = "createdAt";
   static const String ascending = "ascending";
   static const String descending = "descending";
+  static const String noUserFoundHint = "noUserFoundHint";
 
   /////////////////////////////
 }

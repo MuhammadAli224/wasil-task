@@ -161,4 +161,6 @@ const Map<String, String> arLan = {
   "createdAt": "تاريخ الإضافة",
   "ascending": "تصاعدي",
   "descending": "تنازلي",
+  "noUserFoundHint": "يجب تسجيل الدخول أولا",
+  "password": "الرقم السري",
 };

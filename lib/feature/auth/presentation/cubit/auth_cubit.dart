@@ -1,86 +1,70 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../global_imports.dart';
 
 part 'auth_cubit.freezed.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> with CubitLifecycleMixin<AuthState> {
-  final AuthRegisterCase _register;
-  final AuthLogoutCase _logout;
-  final AuthLoginCase _login;
-  final AuthGetUserCase _getUser;
+  final LoginUseCase _loginUseCase;
+  final RegisterUseCase _registerUseCase;
+  final FirebaseAuth _firebaseAuth;
+  ValueNotifier<int> pageIndexNotifier = ValueNotifier(0);
 
-  // final AuthUpdateProfileCase _updateProfile;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController userNameController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
-  AuthCubit({
-    required AuthRegisterCase registerCase,
-    required AuthLogoutCase logoutCase,
-    required AuthLoginCase loginCase,
-    required AuthGetUserCase getUserCase,
-    // required AuthUpdateProfileCase updateProfileCase,
-  }) : _register = registerCase,
-       _logout = logoutCase,
-       _login = loginCase,
-       _getUser = getUserCase,
-       // _updateProfile = updateProfileCase,
-       super(const AuthState.initial());
+  AuthCubit(this._loginUseCase, this._registerUseCase, this._firebaseAuth)
+    : super(const AuthState.initial());
+
+  void checkIfLoggedIn() {
+    final user = _firebaseAuth.currentUser;
+    if (user != null) {
+      safeEmit(
+        AuthState.loaded(UserEntity(uid: user.uid, email: user.email ?? '')),
+      );
+    } else {
+      safeEmit(const AuthState.unAuthenticated(''));
+    }
+  }
 
   Future<void> login() async {
-    if (!formKey.currentState!.validate()) return;
+    if (!loginFormKey.currentState!.validate()) return;
 
     safeEmit(const AuthState.loading());
-    final result = await _login(
-      identify: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      cancelToken: cancelToken,
+    final result = await _loginUseCase(
+      emailController.text.trim(),
+      passwordController.text.trim(),
     );
     if (isClosed) return;
     result.fold(
       (failure) => safeEmit(AuthState.error(message: failure.message)),
-      (response) {
+      (user) {
         _reset();
-        safeEmit(AuthState.loaded(response.data!, response.message));
+        safeEmit(AuthState.loaded(user));
       },
     );
   }
 
   Future<void> register() async {
-    if (!formKey.currentState!.validate()) return;
+    if (!registerFormKey.currentState!.validate()) return;
     safeEmit(const AuthState.loading());
-    final result = await _register(
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      name: userNameController.text.trim(),
-      phone: phoneController.text.trim(),
-      cancelToken: cancelToken,
+    final result = await _registerUseCase(
+      emailController.text.trim(),
+      passwordController.text.trim(),
     );
     if (isClosed) return;
     result.fold(
       (failure) => safeEmit(
         AuthState.error(message: failure.message, title: failure.title),
       ),
-      (response) {
+      (user) {
         _reset();
-        safeEmit(AuthState.loaded(response.data!, response.message));
-      },
-    );
-  }
-
-  Future<void> logout() async {
-    safeEmit(const AuthState.loading());
-    final result = await _logout(cancelToken);
-    if (isClosed) return;
-    result.fold(
-      (failure) => safeEmit(
-        AuthState.error(message: failure.message, title: failure.title),
-      ),
-      (response) {
-        // emit(AuthState.loaded(response.data!, response.message));
+        safeEmit(AuthState.loaded(user));
       },
     );
   }
@@ -89,20 +73,6 @@ class AuthCubit extends Cubit<AuthState> with CubitLifecycleMixin<AuthState> {
     safeEmit(const AuthState.initial());
     emailController.clear();
     passwordController.clear();
-    phoneController.clear();
-    userNameController.clear();
-  }
-
-  Future<void> getUser() async {
-    safeEmit(const AuthState.loading());
-    final result = await _getUser(cancelToken: cancelToken);
-    if (isClosed) return;
-    result.fold(
-      (failure) => safeEmit(AuthState.error(message: failure.message)),
-      (user) {
-        safeEmit(AuthState.loaded(user.data!, ''));
-      },
-    );
   }
 
   @override
@@ -110,7 +80,5 @@ class AuthCubit extends Cubit<AuthState> with CubitLifecycleMixin<AuthState> {
     super.close();
     emailController.dispose();
     passwordController.dispose();
-    phoneController.dispose();
-    userNameController.dispose();
   }
 }

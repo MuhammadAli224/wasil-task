@@ -15,7 +15,6 @@ class AuthLoginPage extends StatelessWidget {
       ),
       body: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => getIt<AuthCubit>()),
           BlocProvider(create: (_) => PasswordVisibilityCubit()),
         ],
         child: AuthLoginWidget(),

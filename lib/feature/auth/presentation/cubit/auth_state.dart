@@ -6,7 +6,8 @@ class AuthState with _$AuthState {
 
   const factory AuthState.loading() = AuthLoading;
 
-  const factory AuthState.loaded(AuthEntity user, String message) = AuthLoaded;
+  const factory AuthState.loaded(UserEntity user) = AuthLoaded;
+  const factory AuthState.unAuthenticated(String? msg) = UnAuthenticated;
 
   const factory AuthState.error({required String message, String? title}) =
       AuthError;

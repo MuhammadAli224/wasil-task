@@ -43,13 +43,9 @@ class _SplashScreenState extends State<SplashScreen>
         _timer?.cancel();
         _fadeController.forward();
         await _initializeApp();
-        final token = await getIt<AuthLocalDataSource>().getToken();
         await Future.delayed(const Duration(seconds: 2));
-        if (token != null) {
-          context.go(AppRoutes.home);
-        } else {
-          context.go(AppRoutes.home);
-        }
+
+        context.go(AppRoutes.home);
       }
     });
   }

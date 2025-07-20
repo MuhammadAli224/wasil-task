@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../global_imports.dart';
 
 
@@ -11,6 +13,7 @@ void initGetIt() async {
   getIt.registerSingleton<ApiServices>(ApiServices(Dio()));
 
   getIt.registerSingleton<NetworkInfo>(NetworkInfoImpl(Connectivity()));
+  getIt.registerLazySingleton(() => FirebaseAuth.instance);
 
   //======================== Hive Boxes ========================================
   final appBox = await Hive.openBox(BoxKey.appBox);

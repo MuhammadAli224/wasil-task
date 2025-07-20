@@ -18,50 +18,35 @@ class AuthRegisterWidget extends StatelessWidget with FormValidationMixin {
   Widget build(BuildContext context) {
     final cubit = context.read<AuthCubit>();
     return Form(
-      key: cubit.formKey,
+      key: cubit.registerFormKey,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView(
-          children: [
-            AppTextFormField(
-              label: AppStrings.userName.tr(),
-              controller: cubit.userNameController,
-              validator: (val) {
-                return validateLength(value: val, minLength: 3, maxLength: 50);
-              },
-            ),
-            10.h.gap,
-            AppTextFormField(
-              label: AppStrings.email.tr(),
-              controller: cubit.emailController,
-              hintText: AppStrings.enterEmailHint.tr(),
-              keyboardType: TextInputType.emailAddress,
-              validator: validateEmail,
-            ),
-            10.h.gap,
-            AppTextFormField(
-              label: AppStrings.phoneNumber.tr(),
-              controller: cubit.phoneController,
-              maxLength: 10,
-              hintText: AppStrings.phoneNumber.tr(),
-              keyboardType: TextInputType.phone,
-              validator: validateMobile,
-            ),
-            10.h.gap,
-            AuthPasswordField(
-              controller: cubit.passwordController,
-              validator: (val) {
-                return validateLength(value: val, minLength: 5, maxLength: 20);
-              },
-            ),
-            10.gap,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              10.h.gap,
+              AppTextFormField(
+                label: AppStrings.email.tr(),
+                controller: cubit.emailController,
+                hintText: AppStrings.enterEmailHint.tr(),
+                keyboardType: TextInputType.emailAddress,
+                validator: validateEmail,
+              ),
+              10.h.gap,
+              AuthPasswordField(
+                controller: cubit.passwordController,
+                validator: (val) {
+                  return validateLength(value: val, minLength: 5, maxLength: 20);
+                },
+              ),
 
-            10.h.gap,
-            AuthActionButton(
-              onTap: cubit.register,
-              text: AppStrings.register.tr(),
-            ),
-          ],
+              10.h.gap,
+              AuthActionButton(
+                onTap: cubit.register,
+                text: AppStrings.register.tr(),
+              ),
+            ],
+          ),
         ),
       ),
     );

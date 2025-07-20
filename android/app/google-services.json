@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "555996890963",
+    "project_id": "wasil-260a5",
+    "storage_bucket": "wasil-260a5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555996890963:android:b7ce198061c1da126b03a6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYXHolDSdeuv6gUnZm75FWd1mUHxeHHIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

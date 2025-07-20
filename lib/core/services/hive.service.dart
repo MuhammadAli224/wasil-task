@@ -8,15 +8,12 @@ class HiveServices {
 
     await Future.wait([
       _initAppBox(),
-      _initializeBoxModel<AuthUserModel>(boxName: BoxKey.authUserBox),
       _initializeBoxModel<ProductsDTO>(boxName: BoxKey.products),
       _initializeBoxModel<CartDTO>(boxName: BoxKey.carts),
-      // _initializeBoxModel<ProductsDTO>(boxName: BoxKey.products),
     ]);
   }
 
   void _registerAdapters() {
-    _register<AuthUserModel>(AuthUserModelAdapter(), 100);
     _register<ProductsDTO>(ProductsDTOAdapter(), 101);
     _register<DimensionsDTO>(DimensionsDTOAdapter(), 102);
     _register<MetaDTO>(MetaDTOAdapter(), 103);

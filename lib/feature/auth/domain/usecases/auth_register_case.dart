@@ -1,23 +1,12 @@
 import '../../../../global_imports.dart';
 
-class AuthRegisterCase {
+class RegisterUseCase {
   final AuthRepository repository;
 
-  AuthRegisterCase(this.repository);
+  RegisterUseCase(this.repository);
 
-  Future<Either<Failure, ApiResponse<AuthEntity>>> call({
-    required String name,
-    required String email,
-    required String phone,
-    required String password,
-    required CancelToken cancelToken,
-  }) {
-    return repository.register(
-      name: name,
-      email: email,
-      phone: phone,
-      password: password,
-      cancelToken: cancelToken,
-    );
+  Future<Either<Failure, UserEntity>> call(String email, String password) {
+    return repository.register(email: email, password: password);
   }
 }
+

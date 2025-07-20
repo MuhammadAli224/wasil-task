@@ -1,9 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
+
+import '../../firebase_options.dart';
 import '../../global_imports.dart';
 class AppServices {
   Future<void> initAppServices() async {
-    // OneSignal.Debug.setLogLevel(OSLogLevel.warn);
-    // OneSignal.initialize("859c8631-4529-4786-8658-7134daad2adb");
-    // OneSignal.Notifications.requestPermission(false);
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
     Future.wait(
       [
@@ -11,9 +14,6 @@ class AppServices {
       ],
     );
 
-    // await FcmHelper.initFcm();
-    // await NotificationsController.initializeLocalNotifications();
-    // await NotificationsController.initializeIsolateReceivePort();
-    // NotificationsController.startListeningNotificationEvents();
+
   }
 }
