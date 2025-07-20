@@ -86,20 +86,10 @@ You can download the latest release from GitHub Actions here:
 
 - **Flutter** 3.x
 - **Firebase Auth**
-- **HTTP** for API calls
+- **DIO** for API calls
 - **Hive / Shared Preferences** for caching
 - **Bloc / Cubit** for state management
 
 ---
 
-## 📄 License
 
-This project is for demonstration purposes and part of a recruitment task. Not intended for production use.
-
----
-
-## 🙋‍♂️ Contact
-
-**Muhammad Ali**  
-📧 muhammad.ali224@gmail.com  
-🔗 [LinkedIn](https://www.linkedin.com/in/muhammad-ali-flutter) *(optional)*
